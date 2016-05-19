@@ -18,18 +18,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
-    let nowPlayingNavController = mainStoryboard.instantiateViewControllerWithIdentifier("NavController")
+    let tableViewControllerForNowPlaying = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController")
+    let gridViewControllerForNowPlaying = mainStoryboard.instantiateViewControllerWithIdentifier("GridViewController")
+    
+    let tableViewControllerForTopRated = mainStoryboard.instantiateViewControllerWithIdentifier("ViewController")
+    let gridViewControllerForTopRated = mainStoryboard.instantiateViewControllerWithIdentifier("GridViewController")
+    
+    let nowPlayingNavController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavController")
     nowPlayingNavController.tabBarItem.title = "Now Playing"
     nowPlayingNavController.tabBarItem.image = UIImage(named: "NowPlaying")
     
-    let topRatedNavController = mainStoryboard.instantiateViewControllerWithIdentifier("NavController")
+    let topRatedNavController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavController")
     topRatedNavController.tabBarItem.title = "Top Rated"
     topRatedNavController.tabBarItem.image = UIImage(named: "TopRated")
+
+    let nowPlayingViewController = nowPlayingNavController.childViewControllers[0] as! MainViewController
+    nowPlayingViewController.tableViewController = tableViewControllerForNowPlaying
+    nowPlayingViewController.gridViewController = gridViewControllerForNowPlaying
     
-    let topRatedViewController = topRatedNavController.childViewControllers[0] as! ViewController
+    let topRatedViewController = topRatedNavController.childViewControllers[0] as! MainViewController
+    topRatedViewController.tableViewController = tableViewControllerForTopRated
+    topRatedViewController.gridViewController = gridViewControllerForTopRated
     topRatedViewController.loadTopRated = true
     
-    let tabBarController = UITabBarController()
+    let tabBarController = FlicksTabBarController()
     tabBarController.viewControllers = [nowPlayingNavController, topRatedNavController]
     
     window?.rootViewController = tabBarController

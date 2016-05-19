@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
   @IBOutlet weak var tableView: UITableView!
   
@@ -17,81 +17,19 @@ class ViewController: UIViewController, UITableViewDataSource {
   
   var movies: [NSDictionary]!
   
-  var loadTopRated = false
-  
-  static let NowPlayingURL = "https://api.themoviedb.org/3/movie/now_playing?api_key="
-  static let TopRatedURL = "https://api.themoviedb.org/3/movie/top_rated?api_key="
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     tableView.dataSource = self
+    
     let refreshControl = UIRefreshControl()
-    refreshControl.addTarget(self, action: "makeMovieRequest:", forControlEvents: UIControlEvents.ValueChanged)
+    refreshControl.addTarget(self, action: "triggerRefresh:", forControlEvents: UIControlEvents.ValueChanged)
     tableView.insertSubview(refreshControl, atIndex: 0)
-    makeMovieRequest(refreshControl)
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
-  func makeMovieRequest(refreshControl: UIRefreshControl) {
-    let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-    var baseApiUrl: String
-    
-    if (loadTopRated) {
-      baseApiUrl = ViewController.TopRatedURL
-    } else {
-      baseApiUrl = ViewController.NowPlayingURL
-    }
-    
-    let url = NSURL(string: baseApiUrl + apiKey)
-    
-    // Build request
-    let request = NSURLRequest(
-      URL: url!,
-      cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
-      timeoutInterval: 10)
-    
-    // Build session
-    let session = NSURLSession(
-      configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-      delegate: nil,
-      delegateQueue: NSOperationQueue.mainQueue()
-    )
-    
-    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-    
-    // Make call
-    let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
-      MBProgressHUD.hideHUDForView(self.view, animated: true)
-      
-      guard let data = dataOrNil else {
-        self.errorView.hidden = false
-        refreshControl.endRefreshing()
-        return
-      }
-      
-      guard error == nil else {
-        self.errorView.hidden = false
-        refreshControl.endRefreshing()
-        return
-      }
-      
-      self.errorView.hidden = true
-      
-      if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-        data, options:[]) as? NSDictionary {
-        if let results = responseDictionary["results"] as? [NSDictionary] {
-          self.movies = results
-          self.tableView.reloadData()
-          refreshControl.endRefreshing()
-        }
-      }
-    })
-    task.resume()
+  func triggerRefresh(refreshControl: UIRefreshControl) {
+    let mainVC = self.parentViewController as! MainViewController
+    mainVC.makeMovieRequest(refreshControl)
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
