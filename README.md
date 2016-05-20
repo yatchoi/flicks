@@ -58,6 +58,12 @@ link in Safari or the Youtube app. I ended up installing a YouTube player Cocoap
 Unfortunately, it doesn't work for some reason in the Simulator, but works perfectly fine on my
 own device!
 
+Oh! Another annoying gotcha I had was that my table/grid view would occasionally not render from
+the top of the container, and instead be "indented" down further. Sometimes when switching between
+tabs, it would be fixed, but I couldn't hammer down why. After googling, it turns out that it was
+due to how view insets were handled with regards to navigation/tab controllers. So the fix was
+simple -- turn off the "Under top/bottom bar" options.
+
 ## License
 
     Copyright 2016 Yat Choi
