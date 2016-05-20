@@ -10,27 +10,27 @@ Time spent: ~20 hours spent in total
 
 The following **required** functionality is complete:
 
-* [ ] User can view a list of movies currently playing in theaters from The Movie Database. Poster images must be loaded asynchronously.
-* [ ] User can view movie details by tapping on a cell.
-* [ ] User sees loading state while waiting for movies API.
-* [ ] User sees an error message when there's a networking error.
-* [ ] User can pull to refresh the movie list.
-* [ ] Add a tab bar for Now Playing or Top Rated movies.
-* [ ] Implement a UISegmentedControl to switch between a list view and a grid view.
+* [x] User can view a list of movies currently playing in theaters from The Movie Database. Poster images must be loaded asynchronously.
+* [x] User can view movie details by tapping on a cell.
+* [x] User sees loading state while waiting for movies API.
+* [x] User sees an error message when there's a networking error.
+* [x] User can pull to refresh the movie list.
+* [x] Add a tab bar for Now Playing or Top Rated movies.
+* [x] Implement a UISegmentedControl to switch between a list view and a grid view.
 
 The following **optional** features are implemented:
-* [ ] Add a search bar
-* [ ] All images fade in as they are loading.
+* [x] Add a search bar
+* [x] All images fade in as they are loading.
 * [ ] For the large poster, load the low-res image first and switch to high-res when complete. (low)
-* [ ] Customize the highlight and selection effect of the cell.
-* [ ] Customize the navigation bar
-* [ ] Tapping on a movie poster image shows the movie poster as full screen and zoomable
-* [ ] User can tap on a button to play the movie trailer.
+* [x] Customize the highlight and selection effect of the cell.
+* [x] Customize the navigation bar
+* [x] Tapping on a movie poster image shows the movie poster as full screen and zoomable
+* [x] User can tap on a button to play the movie trailer.
 
 The following **additional** features are implemented:
 
-- [ ] When zoomed into full screen image, double tap to resize to original zoom
-- [ ] Swipe left to go back from full screen image.
+- [x] When zoomed into full screen image, double tap to resize to original zoom
+- [x] Swipe left to go back from full screen image.
 
 ## Video Walkthrough
 
