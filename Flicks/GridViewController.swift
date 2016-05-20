@@ -18,6 +18,10 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
     super.viewDidLoad()
     
     collectionView.dataSource = self
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: "triggerRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+    collectionView.insertSubview(refreshControl, atIndex: 0)
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,6 +58,11 @@ class GridViewController: UIViewController, UICollectionViewDataSource {
       
       destinationVC.movieData = movies[indexPath.row]
     }
+  }
+  
+  func triggerRefresh(refreshControl: UIRefreshControl) {
+    let mainVC = self.parentViewController as! MainViewController
+    mainVC.makeMovieRequest(refreshControl)
   }
 }
 

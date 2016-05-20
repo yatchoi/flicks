@@ -8,4 +8,6 @@
 
 protocol ListGridDelegate: class {
   func listGridPicker(didSelectIndex index:Int)
+  
+  func updateErrorHidden(hidden:Bool)
 }

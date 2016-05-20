@@ -19,4 +19,16 @@ class FlicksTabBarController: UITabBarController, ListGridDelegate {
       mainVC.updateActiveViewControllerByIndex(index)
     }
   }
+  
+  func updateErrorHidden(hidden:Bool) {
+    if self.viewControllers == nil {
+      return
+    }
+    for vc in self.viewControllers! {
+      let mainVC = vc.childViewControllers[0] as! MainViewController
+      if mainVC.errorView != nil {
+        mainVC.errorView.hidden = hidden
+      }
+    }
+  }
 }

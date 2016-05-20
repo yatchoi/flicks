@@ -13,14 +13,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   @IBOutlet weak var tableView: UITableView!
   
-  @IBOutlet weak var errorView: UIView!
-  
   var movies: [NSDictionary]!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     tableView.dataSource = self
+    tableView.delegate = self
     
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: "triggerRefresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -54,23 +53,53 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     cell?.movieTitleLabel.text = movieName
     cell?.movieSynopsisLabel.text = movieSynopsis
     
+    let backgroundView = UIView()
+    backgroundView.backgroundColor = UIColor.purpleColor()
+    cell?.selectedBackgroundView = backgroundView
+    
+    var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onPosterTap:")
+    
+    cell?.movieImageView.userInteractionEnabled = true
+    cell?.movieImageView.addGestureRecognizer(tapGestureRecognizer)
+    
     return cell!
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.identifier == "movieDetailsSegue") {
-      let destinationVC = segue.destinationViewController as! MovieDetailsViewController
-      
-      guard let sourceCell = sender as? UITableViewCell else {
-        return
-      }
-      
-      guard let indexPath = tableView.indexPathForCell(sourceCell) else {
-        return
-      }
-      
-      destinationVC.movieData = movies[indexPath.row]
+  func onPosterTap(sender: UITapGestureRecognizer) {
+    print("poster tapped")
+    
+    guard let cell = sender.view?.superview?.superview as? MovieTableViewCell else {
+      return
     }
+    
+    guard let indexPath = tableView.indexPathForCell(cell) else {
+      return
+    }
+    
+    performSegueWithIdentifier("fullScreenSegue", sender: cell)
+  }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    var destinationVC: HasMovieData?
+    if (segue.identifier == "movieDetailsSegue") {
+      destinationVC = segue.destinationViewController as! MovieDetailsViewController
+    } else if (segue.identifier == "fullScreenSegue") {
+      destinationVC = segue.destinationViewController as! FullPosterViewController
+    }
+    
+    guard let sourceCell = sender as? UITableViewCell else {
+      return
+    }
+    
+    guard let indexPath = tableView.indexPathForCell(sourceCell) else {
+      return
+    }
+    
+    destinationVC?.setMovieDataObject(movies[indexPath.row])
   }
 }
 

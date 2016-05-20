@@ -7,6 +7,8 @@ target 'Flicks' do
 
   # Pods for Flicks
   pod 'AlamofireImage', '~> 2.0'
+  pod 'AFNetworking', '~> 2.6'
   pod 'MBProgressHUD'
+  pod 'YouTubePlayer'
 
 end

@@ -111,16 +111,16 @@ class MainViewController: UIViewController {
       refreshControl?.endRefreshing()
       
       guard let data = dataOrNil else {
-        self.errorView.hidden = false
+        self.listGridDelegate?.updateErrorHidden(false)
         return
       }
       
       guard error == nil else {
-        self.errorView.hidden = false
+        self.listGridDelegate?.updateErrorHidden(false)
         return
       }
       
-      self.errorView.hidden = true
+      self.listGridDelegate?.updateErrorHidden(true)
       
       if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
         data, options:[]) as? NSDictionary {
