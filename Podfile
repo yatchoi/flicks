@@ -9,6 +9,6 @@ target 'Flicks' do
   pod 'AlamofireImage', '~> 2.0'
   pod 'AFNetworking', '~> 2.6'
   pod 'MBProgressHUD'
-  pod 'YouTubePlayer'
+  pod 'XCDYouTubeKit', '~> 2.5'
 
 end

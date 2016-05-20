@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import MediaPlayer
-import AVKit
-import AVFoundation
-import YouTubePlayer
+import XCDYouTubeKit
 
 class MovieDetailsViewController: UIViewController, HasMovieData {
   var movieData: NSDictionary!
@@ -105,13 +102,15 @@ class MovieDetailsViewController: UIViewController, HasMovieData {
   }
   
   func playYoutubeVideo(videoKey: String) {
-    var url = NSURL(string:"youtube://" + videoKey)!
-    if UIApplication.sharedApplication().canOpenURL(url)  {
-      UIApplication.sharedApplication().openURL(url)
-    } else {
-      url = NSURL(string:"http://www.youtube.com/watch?v=" + videoKey)!
-      UIApplication.sharedApplication().openURL(url)
-    }
+    let playerVC = XCDYouTubeVideoPlayerViewController(videoIdentifier: videoKey)
+    self.presentMoviePlayerViewControllerAnimated(playerVC)
+//    var url = NSURL(string:"youtube://" + videoKey)!
+//    if UIApplication.sharedApplication().canOpenURL(url)  {
+//      UIApplication.sharedApplication().openURL(url)
+//    } else {
+//      url = NSURL(string:"http://www.youtube.com/watch?v=" + videoKey)!
+//      UIApplication.sharedApplication().openURL(url)
+//    }
   }
   
   override func didReceiveMemoryWarning() {
