@@ -26,6 +26,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     tableView.insertSubview(refreshControl, atIndex: 0)
   }
   
+  override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    tableView.contentInset = UIEdgeInsetsZero
+    tableView.scrollIndicatorInsets = UIEdgeInsetsZero
+  }
+  
   func triggerRefresh(refreshControl: UIRefreshControl) {
     let mainVC = self.parentViewController as! MainViewController
     mainVC.makeMovieRequest(refreshControl)
@@ -54,7 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     cell?.movieSynopsisLabel.text = movieSynopsis
     
     let backgroundView = UIView()
-    backgroundView.backgroundColor = UIColor.purpleColor()
+    backgroundView.backgroundColor = UIColor(red: 200, green: 0, blue: 90, alpha: 1)
     cell?.selectedBackgroundView = backgroundView
     
     var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onPosterTap:")

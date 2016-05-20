@@ -58,10 +58,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="5XD-yp-M5p">
                         <nil key="title"/>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="rMb-RV-dbo" id="3hz-CS-pnM"/>
                         <segue destination="p8t-A9-sto" kind="modal" identifier="fullScreenSegue" modalTransitionStyle="flipHorizontal" id="yEv-pP-XMR"/>
@@ -162,10 +162,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.26620176169999998" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="td5-Ae-6ii">
                         <nil key="title"/>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="collectionView" destination="F2e-Q3-g8E" id="fpD-V3-RMq"/>
                     </connections>
@@ -186,7 +186,7 @@
                                 <rect key="frame" x="-1" y="64" width="321" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="VwH-J7-BLk">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="VwH-J7-BLk">
                                 <rect key="frame" x="-1" y="64" width="321" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -194,20 +194,13 @@
                                         <rect key="frame" x="15" y="0.0" width="290" height="504"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Captain America: Civil War" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ctw-36-o6J">
-                                                <rect key="frame" x="10" y="19" width="260" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="qaf-kw-1AF">
-                                                <rect key="frame" x="204" y="60" width="73" height="30"/>
+                                                <rect key="frame" x="190" y="50" width="80" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Play Trailer"/>
+                                                <state key="normal" title="See Trailer"/>
                                                 <connections>
                                                     <action selector="playTrailerTapped:" destination="glM-Ee-r2g" eventType="touchUpInside" id="oRs-Di-5FC"/>
                                                 </connections>
@@ -219,8 +212,29 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hNu-j3-u2P">
+                                                <rect key="frame" x="11" y="69" width="163" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Released:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="52k-57-653">
+                                                <rect key="frame" x="10" y="50" width="128" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Captain America: Civil War" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ctw-36-o6J">
+                                                <rect key="frame" x="8" y="8" width="274" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.25568313021355948" green="0.24824794076709961" blue="0.38183092948717945" alpha="0.92303340517241383" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.30704895500000001" green="0.0" blue="0.15499432365167784" alpha="0.94905711203793097" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                                 <gestureRecognizers/>
@@ -229,12 +243,13 @@
                         <color key="backgroundColor" red="0.38370594155635923" green="0.34943756282359711" blue="0.4291266025641024" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="OBS-jq-ArF"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="backgroundImage" destination="1hb-h7-XVR" id="SAj-9X-NXQ"/>
                         <outlet property="contentView" destination="2VL-s8-y44" id="ELn-cz-zfK"/>
+                        <outlet property="durationLabel" destination="hNu-j3-u2P" id="JMy-iN-bnj"/>
                         <outlet property="movieTitle" destination="ctw-36-o6J" id="8Vx-sE-XQy"/>
                         <outlet property="overviewText" destination="562-mc-eY0" id="dVX-PK-3fe"/>
+                        <outlet property="releasedLabel" destination="52k-57-653" id="t5F-KD-3Av"/>
                         <outlet property="scrollView" destination="VwH-J7-BLk" id="GPB-2p-R0N"/>
                     </connections>
                 </viewController>
@@ -250,11 +265,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="5pN-CA-o5z">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                            <searchBar contentMode="redraw" id="Bg5-en-W0g">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <view hidden="YES" contentMode="scaleToFill" id="32m-cu-qtl">
                                 <rect key="frame" x="0.0" y="65" width="320" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -268,6 +283,11 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.31815668070000003" green="0.24446314459999999" blue="0.39438869859999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="5pN-CA-o5z">
+                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -290,6 +310,7 @@
                     <connections>
                         <outlet property="contentView" destination="5pN-CA-o5z" id="9t4-yv-Ar5"/>
                         <outlet property="errorView" destination="32m-cu-qtl" id="vgD-4g-BNv"/>
+                        <outlet property="searchBar" destination="Bg5-en-W0g" id="URk-ne-mBj"/>
                         <outlet property="viewSegmentedControl" destination="16q-Bt-oxu" id="30a-ov-pfZ"/>
                     </connections>
                 </viewController>
@@ -308,6 +329,9 @@
                         <color key="backgroundColor" red="0.30704895502564111" green="0.0" blue="0.15648866094482913" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.47700087810256409" green="0.0" blue="0.24310530116457957" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -320,6 +344,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="N1i-B4-o8j"/>
+        <segue reference="bQj-hY-G7Q"/>
     </inferredMetricsTieBreakers>
 </document>

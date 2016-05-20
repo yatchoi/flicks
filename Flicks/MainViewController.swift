@@ -9,12 +9,11 @@
 import UIKit
 import MBProgressHUD
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UISearchBarDelegate {
 
   @IBOutlet weak var contentView: UIView!
-
   @IBOutlet weak var viewSegmentedControl: UISegmentedControl!
-  
+  @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var errorView: UIView!
   
   var tableViewController: UIViewController?
@@ -42,12 +41,19 @@ class MainViewController: UIViewController {
     
     self.listGridDelegate = self.parentViewController?.parentViewController as! FlicksTabBarController
     updateActiveViewControllerByIndex(viewSegmentedControl.selectedSegmentIndex)
+    
+    self.searchBar.delegate = self
+    
     makeMovieRequest(nil)
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     updateActiveViewController()
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
   }
   
   private func removeInactiveViewController(inactiveViewController: UIViewController?) {
@@ -126,7 +132,7 @@ class MainViewController: UIViewController {
         data, options:[]) as? NSDictionary {
         if let results = responseDictionary["results"] as? [NSDictionary] {
           self.movies = results
-          self.reloadViewData()
+          self.reloadViewData(self.movies)
         }
       }
     })
@@ -152,13 +158,27 @@ class MainViewController: UIViewController {
     }
   }
   
-  func reloadViewData() {
+  func reloadViewData(movies: [NSDictionary]) {
     let tableVC = tableViewController as! ViewController
     let gridVC = gridViewController as! GridViewController
     tableVC.movies = movies
     gridVC.movies = movies
     tableVC.tableView?.reloadData()
     gridVC.collectionView?.reloadData()
+  }
+  
+  func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    var movieResults = [NSDictionary]()
+    if (searchText == "") {
+        movieResults = self.movies
+    } else {
+      for movie in self.movies {
+        if (movie["title"]?.lowercaseString?.containsString(searchText.lowercaseString) == true) {
+          movieResults.append(movie)
+        }
+      }
+    }
+    self.reloadViewData(movieResults)
   }
 
   /*

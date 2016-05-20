@@ -35,11 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let nowPlayingViewController = nowPlayingNavController.childViewControllers[0] as! MainViewController
     nowPlayingViewController.tableViewController = tableViewControllerForNowPlaying
     nowPlayingViewController.gridViewController = gridViewControllerForNowPlaying
+    nowPlayingViewController.navigationItem.title = "Now Playing"
     
     let topRatedViewController = topRatedNavController.childViewControllers[0] as! MainViewController
     topRatedViewController.tableViewController = tableViewControllerForTopRated
     topRatedViewController.gridViewController = gridViewControllerForTopRated
     topRatedViewController.loadTopRated = true
+    topRatedViewController.navigationItem.title = "Top Rated"
     
     let tabBarController = FlicksTabBarController()
     tabBarController.viewControllers = [nowPlayingNavController, topRatedNavController]
